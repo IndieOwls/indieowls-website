@@ -5,18 +5,22 @@ import styled from 'styled-components'
  */
 export const Section = styled.section`
   /* box */
-  padding: 2rem 0;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
+  min-height: 200px;
+  /* flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   /* typography */
-  h2 {
-    font-size: 2rem;
+  h2,
+  p {
     margin-bottom: 1rem;
   }
-  p {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+
+  @media only screen and (min-width: 700px) {
+    min-height: 400px;
   }
 `
 

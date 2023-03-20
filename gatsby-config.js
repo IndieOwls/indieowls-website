@@ -4,14 +4,20 @@
 module.exports = {
   siteMetadata: {
     title: `indieowls-website`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.indieowls.com`,
   },
-  plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "images",
-      "path": "./src/images/"
+  plugins: [
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: './src/images/',
+      },
+      __key: 'images',
     },
-    __key: "images"
-  }]
-};
+  ],
+}

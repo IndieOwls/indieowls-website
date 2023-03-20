@@ -1,4 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
+import WebFont from 'webfontloader'
+
+WebFont.load({
+  google: {
+    families: ['Poppins:400,600', 'Roboto Slab'],
+  },
+})
 
 export const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -48,6 +55,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* end reset */
 
 html {
   box-sizing: border-box;
@@ -57,7 +65,56 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #111111;
+  background-color: #fff;
+}
 
+h1 {
+	font-family: 'Roboto Slab', serif;
+	font-size: 2rem;
+	padding: 1rem 0;
+
+	small {
+		font-size: 1rem;
+	}
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Slab', serif;
+	font-size: 0.75rem;
+}
+
+p {
+	font-size: 1rem;
+	padding: 1rem;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+p.bold, span.bold {
+	font-weight: 600;
+}
+p.center, span.center {
+	text-align: center;
+}
+strong {
+	font-weight: 600;
+}
+strong.strong-color {
+	color: #00897B;
+}
 `
 
 export default GlobalStyle
