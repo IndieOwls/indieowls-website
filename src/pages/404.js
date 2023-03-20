@@ -1,12 +1,14 @@
 import React from 'react'
 import Layout from '../layout'
 
-function Page404() {
+function NotFoundPage() {
   return (
     <Layout>
-      <p>404 Page</p>
+      <p>NotFoundPage </p>
     </Layout>
   )
 }
 
-export default Page404
+export default NotFoundPage
+
+export const Head = () => <title>Not found</title>

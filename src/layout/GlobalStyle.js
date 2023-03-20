@@ -1,11 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import WebFont from 'webfontloader'
-
-WebFont.load({
-  google: {
-    families: ['Poppins:400,600', 'Roboto Slab'],
-  },
-})
 
 export const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 

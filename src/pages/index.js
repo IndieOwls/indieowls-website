@@ -16,3 +16,5 @@ function IndexPage() {
 }
 
 export default IndexPage
+
+export const Head = () => <title>Home - Indie Owls Creative</title>
