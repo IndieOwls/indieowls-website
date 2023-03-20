@@ -19,5 +19,6 @@ module.exports = {
       },
       __key: 'images',
     },
+    'gatsby-plugin-netlify',
   ],
 }
