@@ -1,4 +1,3 @@
-export { default as BlockImage } from './BlockImage'
-export { default as Box } from './Box'
+export { default as Card } from './Card'
 export { default as FlatButton } from './FlatButton'
-export { default as Section } from './Section'
+export { default as Stack } from './Stack'

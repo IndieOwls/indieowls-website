@@ -1,112 +1,51 @@
 import { createGlobalStyle } from 'styled-components'
+import 'normalize.css'
 
 export const GlobalStyle = createGlobalStyle`
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	/* box */
+	background-color: ${({ theme }) => theme.colors.white};
+	/* content */
+  font-family: ${({ theme }) => theme.fonts.primary};
+	font-weight: ${({ theme }) => theme.fontWeights.normal};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  line-height: 1.5;
+  color: ${({ theme }) => theme.colors.black};
+}
+
+body, #___gatsby, #gatsby-focus-wrapper, section {
+		/* flex */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	/* box */
 	margin: 0;
 	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/* end reset */
-
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-	font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #111111;
-  background-color: #fff;
+	width: 100%;
+	height: 100%;
 }
 
 h1 {
-	font-family: 'Roboto Slab', serif;
-	font-size: 2rem;
+	font-family: ${({ theme }) => theme.fonts.secondary};
+	font-size: ${({ theme }) => theme.fontSizes.pageHeading};
 	padding: 1rem 0;
 
 	small {
-		font-size: 1rem;
+		font-size: 1.5rem;
 	}
 }
 
 h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', serif;
-	font-size: 0.75rem;
+  font-family: ${({ theme }) => theme.fonts.secondary};
 }
 
-p {
-	font-size: 1rem;
-	padding: 1rem;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-	font-weight: 600;
-}
-
-p.bold, span.bold {
-	font-weight: 600;
-}
-p.center, span.center {
-	text-align: center;
-}
-strong {
-	font-weight: 600;
-}
-strong.strong-color {
-	color: #00897B;
+.flex_child {
+	flex: 1;
 }
 `
 

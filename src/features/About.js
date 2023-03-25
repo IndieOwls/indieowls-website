@@ -1,15 +1,16 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import { BlockImage, Box, Section } from '../components'
+import { Card, Stack } from '../components'
 import blockImage from '../images/robot.jpg'
 
 export function About() {
   return (
-    <Section style={{ background: '#111', color: '#eee' }}>
-      <Box>
-        <div>
+    <section>
+      <Stack>
+        <Card style={{ flex: 'unset' }}>
           <h2>Who We Are</h2>
-          <p className='bold center'>
+          <p>
             <strong className='strong-color'>Indie Owls Creative</strong> specializes in delivering
             next-generation software for small businesses. We build scalable and innovative products
             and strive for lasting impact.
@@ -18,13 +19,22 @@ export function About() {
             Whatever your <strong className='strong-color'>crazy idea</strong> is, we'll turn it
             into actual reality.
           </p>
-        </div>
-        <Box>
-          <BlockImage src={blockImage} style={{ backgroundPosition: 'top' }} />
-        </Box>
-      </Box>
-    </Section>
+        </Card>
+        <Card style={{ alignItems: 'flex-end', margin: 0, padding: 0, width: 500 }}>
+          <DecorativeImage src={blockImage} />
+        </Card>
+      </Stack>
+    </section>
   )
 }
+
+const DecorativeImage = styled.img`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: block;
+    width: 500px;
+  }
+`
 
 export default About

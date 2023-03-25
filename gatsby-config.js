@@ -4,8 +4,13 @@
 
 module.exports = {
   siteMetadata: {
-    title: `indieowls-website`,
+    title: `Indie Owls Creative`,
+    tagline: `Next-Generation Software for the Modern Business`,
     siteUrl: `https://www.indieowls.com`,
+    urls: {
+      contactForm: 'https://form.jotform.com/230766179585167',
+      linkedin: 'https://www.linkedin.com/company/indie-owls-creative/',
+    },
   },
   plugins: [
     'gatsby-plugin-styled-components',
