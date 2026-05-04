@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { StaticImage } from 'gatsby-plugin-image'
 
 import { Card, Stack } from '../components'
-import blockImage from '../images/robot.jpg'
 
 export function About() {
   return (
@@ -20,20 +20,25 @@ export function About() {
             into actual reality.
           </p>
         </Card>
-        <Card style={{ alignItems: 'flex-end', margin: 0, padding: 0, width: 500 }}>
-          <DecorativeImage src={blockImage} />
-        </Card>
+        <ImageCard style={{ alignItems: 'flex-end', margin: 0, padding: 0, width: 500 }}>
+          <StaticImage
+            src='../images/robot.jpg'
+            alt='A robot'
+            width={500}
+            loading='lazy'
+            placeholder='blurred'
+          />
+        </ImageCard>
       </Stack>
     </section>
   )
 }
 
-const DecorativeImage = styled.img`
+const ImageCard = styled(Card)`
   display: none;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    display: block;
-    width: 500px;
+    display: flex;
   }
 `
 
