@@ -11,7 +11,7 @@ function IndexPage({ data }) {
       <Header title={title} tagline={tagline} urls={urls} />
       <About />
       <Services />
-      <Contact />
+      <Contact urls={urls} />
       <Footer />
     </Layout>
   )

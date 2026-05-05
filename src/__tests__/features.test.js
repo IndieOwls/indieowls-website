@@ -1,0 +1,136 @@
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../layout/theme'
+
+import { Header } from '../features/Header'
+import { About } from '../features/About'
+import { Services } from '../features/Services'
+import { Contact } from '../features/Contact'
+import { Footer } from '../features/Footer'
+
+/** Wrap in ThemeProvider (required by styled-components) */
+function withTheme(ui) {
+  return <ThemeProvider theme={theme}>{ui}</ThemeProvider>
+}
+
+const mockUrls = {
+  contactForm: 'https://form.jotform.com/test',
+  linkedin: 'https://www.linkedin.com/company/indie-owls-creative/',
+}
+
+// ---------------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------------
+describe('Header', () => {
+  it('renders the site title', () => {
+    render(withTheme(<Header title='Indie Owls Creative' tagline='Great tagline' urls={mockUrls} />))
+    expect(screen.getByText('Indie Owls Creative')).toBeInTheDocument()
+  })
+
+  it('renders the tagline', () => {
+    render(withTheme(<Header title='Indie Owls Creative' tagline='Great tagline' urls={mockUrls} />))
+    expect(screen.getByText('Great tagline')).toBeInTheDocument()
+  })
+
+  it('renders a Contact Us link pointing to the contactForm URL', () => {
+    render(withTheme(<Header title='Title' tagline='Tag' urls={mockUrls} />))
+    const link = screen.getByRole('link', { name: /contact us/i })
+    expect(link).toHaveAttribute('href', mockUrls.contactForm)
+  })
+
+  it('renders a LinkedIn link', () => {
+    render(withTheme(<Header title='Title' tagline='Tag' urls={mockUrls} />))
+    const link = screen.getByRole('link', { name: /connect on linkedin/i })
+    expect(link).toHaveAttribute('href', mockUrls.linkedin)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// About
+// ---------------------------------------------------------------------------
+describe('About', () => {
+  it('renders "Who We Are" heading', () => {
+    render(withTheme(<About />))
+    expect(screen.getByRole('heading', { name: /who we are/i })).toBeInTheDocument()
+  })
+
+  it('renders "Indie Owls Creative" text', () => {
+    render(withTheme(<About />))
+    expect(screen.getAllByText(/indie owls creative/i).length).toBeGreaterThan(0)
+  })
+
+  it('renders the robot image with alt text', () => {
+    render(withTheme(<About />))
+    expect(screen.getByAltText(/a robot/i)).toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Services
+// ---------------------------------------------------------------------------
+describe('Services', () => {
+  it('renders "Our Services" heading', () => {
+    render(withTheme(<Services />))
+    expect(screen.getByRole('heading', { name: /our services/i })).toBeInTheDocument()
+  })
+
+  it('renders the three service cards', () => {
+    render(withTheme(<Services />))
+    expect(screen.getByText(/javascript and react/i)).toBeInTheDocument()
+    expect(screen.getByText(/next-generation features/i)).toBeInTheDocument()
+    expect(screen.getByText(/agile product development/i)).toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Contact
+// ---------------------------------------------------------------------------
+describe('Contact', () => {
+  it('renders "Now Available for Hire" text', () => {
+    render(withTheme(<Contact urls={mockUrls} />))
+    expect(screen.getByText(/now available for hire/i)).toBeInTheDocument()
+  })
+
+  it('renders a Contact Us link using the contactForm URL from props', () => {
+    render(withTheme(<Contact urls={mockUrls} />))
+    const link = screen.getByRole('link', { name: /contact us/i })
+    expect(link).toHaveAttribute('href', mockUrls.contactForm)
+  })
+
+  it('uses the provided URL, not a hardcoded one', () => {
+    const customUrls = { contactForm: 'https://custom.form/123', linkedin: '' }
+    render(withTheme(<Contact urls={customUrls} />))
+    const link = screen.getByRole('link', { name: /contact us/i })
+    expect(link).toHaveAttribute('href', 'https://custom.form/123')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------
+describe('Footer', () => {
+  it('renders copyright notice', () => {
+    render(withTheme(<Footer />))
+    expect(screen.getByText(/indie owls creative/i)).toBeInTheDocument()
+  })
+
+  it('renders LinkedIn link', () => {
+    render(withTheme(<Footer />))
+    const links = screen.getAllByRole('link', { name: /linkedin/i })
+    expect(links.length).toBeGreaterThan(0)
+    expect(links[0]).toHaveAttribute('href', mockUrls.linkedin)
+  })
+
+  it('renders GitHub link', () => {
+    render(withTheme(<Footer />))
+    const link = screen.getByRole('link', { name: /github/i })
+    expect(link).toHaveAttribute('href', 'https://github.com/IndieOwls')
+  })
+
+  it('renders Twitch.tv link', () => {
+    render(withTheme(<Footer />))
+    const link = screen.getByRole('link', { name: /twitch/i })
+    expect(link).toHaveAttribute('href', 'https://www.twitch.tv/existentialistowl')
+  })
+})

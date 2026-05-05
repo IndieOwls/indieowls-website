@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { FlatButton } from '../components'
-import heroImage from '../images/hero_image.png'
+import heroImage from '../images/hero_image.jpg'
 
 export function Header({ title, tagline, urls }) {
   return (
@@ -79,7 +79,7 @@ const ResponsiveBox = styled.div`
     align-items: flex-start;
     width: 75%;
     margin-left: 5%;
-  )
+  }
 `
 
 const SiteTitle = styled.h1`
@@ -95,7 +95,7 @@ const SiteTitle = styled.h1`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     font-size: ${({ theme }) => theme.fontSizes.siteTitle};
-  )
+  }
 `
 
 const LinkedinButton = styled(FlatButton)`

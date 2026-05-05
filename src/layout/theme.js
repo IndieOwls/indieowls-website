@@ -24,6 +24,7 @@ export const fontSizes = {
   small: '0.75rem',
   base: '18px',
   large: '2rem',
+  pageHeading: '2.5rem',
   siteTitle: '4rem',
 }
 
