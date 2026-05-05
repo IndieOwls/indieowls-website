@@ -414,11 +414,11 @@ const HeaderEyebrow = styled.span`
   margin-bottom: 1.25rem;
   font-size: 0.875rem;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  letter-spacing: 0.34em;
+  letter-spacing: 0.12em;
   color: rgba(238, 238, 238, 0.72);
 
   @media (max-width: 767px) {
-    letter-spacing: 0.22em;
+    letter-spacing: 0.1em;
   }
 `
 
