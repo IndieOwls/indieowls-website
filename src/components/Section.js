@@ -22,8 +22,7 @@ export const Eyebrow = styled.p`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: ${({ theme, $tone = 'default' }) =>
-    $tone === 'dark' ? 'rgba(248, 250, 252, 0.72)' : theme.colors.primaryDark};
+  color: limegreen;
 `
 
 export default Section

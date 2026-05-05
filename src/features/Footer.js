@@ -9,9 +9,11 @@ export function Footer() {
       <SectionInner>
         <Stack>
           <CardList as='ul' $variant='muted'>
-            <strong>Indie Owls Creative</strong>
-            <li>Client-focused SaaS product design and development.</li>
-            <li>Copyright © {new Date().getFullYear()} Indie Owls Creative.</li>
+            <li>
+              <strong>Indie Owls Creative</strong>
+            </li>
+            <li>A SaaS Product Development Company.</li>
+            <li>Copyright © {new Date().getFullYear()} Indie Owls Creative, LLC.</li>
           </CardList>
           <CardList as='ul' $variant='muted'>
             <strong>Connect</strong>
@@ -19,21 +21,14 @@ export function Footer() {
               <a
                 href='https://www.linkedin.com/company/indie-owls-creative/'
                 target='_blank'
-                rel='noopener noreferrer'>
+                rel='noopener noreferrer'
+              >
                 LinkedIn
               </a>
             </li>
             <li>
               <a href='https://github.com/IndieOwls' target='_blank' rel='noopener noreferrer'>
                 GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href='https://www.twitch.tv/existentialistowl'
-                target='_blank'
-                rel='noopener noreferrer'>
-                Twitch
               </a>
             </li>
           </CardList>

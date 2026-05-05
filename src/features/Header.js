@@ -5,9 +5,9 @@ import { FlatButton, SectionInner, Eyebrow } from '../components'
 import heroImage from '../images/hero_image.jpg'
 
 const highlights = [
-  'MVP to production roadmaps',
-  'Modern React and AI-enabled workflows',
-  'Built for founders, operators, and small teams',
+  'From initial planning to fully launched',
+  'Cutting-edge Workflows',
+  'Built for founders and small teams',
 ]
 
 export function Header({ title, tagline, urls }) {
@@ -18,19 +18,18 @@ export function Header({ title, tagline, urls }) {
           <HeroContent>
             <CopyBlock>
               <Eyebrow $tone='dark'>{title}</Eyebrow>
-              <HeroTitle>Client-facing SaaS products designed, shipped, and iterated with you.</HeroTitle>
+              <HeroTitle>We Build Next-Generation Software for Today's Dreams</HeroTitle>
               <HeroLead>{tagline}</HeroLead>
               <HeroDescription>
-                Indie Owls partners with ambitious teams to shape product strategy, design the
-                experience, and build launch-ready SaaS platforms without the overhead of hiring a
-                full in-house team up front.
+                We partner with brands and early-stage founders to shape strategy and build
+                platforms without the overhead of a full engineering team.
               </HeroDescription>
               <Actions>
                 <FlatButton as='a' href={urls.contactForm} type='primary'>
-                  Start a SaaS project
+                  Launch Your Idea
                 </FlatButton>
                 <FlatButton as='a' href='#process' type='dark'>
-                  See how we work
+                  How We Work
                 </FlatButton>
               </Actions>
             </CopyBlock>
@@ -89,7 +88,7 @@ const HeroTitle = styled.h1`
 const HeroLead = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.medium};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  color: ${({ theme }) => theme.colors.primaryLight};
+  color: limegreen;
 `
 
 const HeroDescription = styled.p`

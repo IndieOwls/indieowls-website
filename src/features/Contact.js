@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import { Card, FlatButton, Section, SectionHeading, SectionInner, Stack } from '../components'
 
 const inquiryTypes = [
-  'New SaaS MVPs that need product definition and delivery',
-  'Existing platforms that need a more cohesive user experience',
-  'Teams looking for focused engineering support to ship the next release',
+  'A Product Roadmap and Business Needs',
+  'Cutting-edge technology, including AI-Agent Workflows',
+  'Rapid Software Strategy & Development',
+  'Scrum Certified Team Development & Mentorship',
 ]
 
 export function Contact({ urls }) {
@@ -16,23 +17,23 @@ export function Contact({ urls }) {
         <CalloutCard $variant='accent'>
           <Stack $align='center'>
             <div>
-              <SectionHeading eyebrow='Start the conversation' title='Need a SaaS product partner for what comes next?'>
+              <SectionHeading eyebrow='Start the conversation' title='Need a Software Product?'>
                 Tell us what stage your product is in, where the friction is, and what you want the
-                next release to accomplish. Early-stage ideas are welcome.
+                next release to accomplish. <br />
+                <br />{' '}
+                <span style={{ color: 'blue', fontWeight: 'bold' }}>
+                  Early-stage ideas are welcome.
+                </span>
               </SectionHeading>
             </div>
             <ActionColumn>
-              <p>
-                Most conversations start with scope, timeline, and the product decisions that need
-                to happen before implementation accelerates.
-              </p>
               <InquiryList>
                 {inquiryTypes.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </InquiryList>
               <FlatButton as='a' href={urls.contactForm} type='primary'>
-                Contact Indie Owls
+                Contact Indie Owls Creative
               </FlatButton>
             </ActionColumn>
           </Stack>

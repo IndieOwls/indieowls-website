@@ -35,7 +35,7 @@ export const fontSizes = {
   large: '1.5rem',
   pageHeading: '2.5rem',
   siteTitle: '4.5rem',
-  display: 'clamp(2.75rem, 6vw, 5rem)',
+  display: 'clamp(2.75rem, 1vw, 5rem)',
 }
 
 export const fontWeights = {

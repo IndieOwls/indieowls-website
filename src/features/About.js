@@ -16,9 +16,11 @@ export function About() {
       <SectionInner>
         <Stack $align='center'>
           <div>
-            <SectionHeading eyebrow='Agency overview' title='A SaaS product partner for teams that need clarity and execution.'>
-              Indie Owls is a client services studio focused on helping founders, operators, and
-              growing businesses turn product ideas into launch-ready SaaS experiences.
+            <SectionHeading
+              eyebrow='Agency overview'
+              title='A SaaS product partner for teams that need clarity and execution.'
+            >
+              Need a Software
             </SectionHeading>
             <CopyCard $variant='muted'>
               <p>

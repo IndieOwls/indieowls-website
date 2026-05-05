@@ -5,7 +5,7 @@
 module.exports = {
   siteMetadata: {
     title: `Indie Owls Creative`,
-    tagline: `SaaS product design and development for client teams`,
+    tagline: `Tech Expertise, Product Design, and Agile Development`,
     siteUrl: `https://www.indieowls.com`,
     urls: {
       contactForm: 'https://form.jotform.com/230766179585167',
