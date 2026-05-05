@@ -6,8 +6,9 @@ import { FlatButton } from '../components'
 const MOBILE_HERO_WIDTH = 768
 const HERO_MEDIA_QUERY =
   '(max-width: 767px), (pointer: coarse), (hover: none), (prefers-reduced-motion: reduce)'
+const HERO_TARGET_FPS = 30
 const HERO_MAX_DEVICE_PIXEL_RATIO = 2
-const HERO_FRAME_INTERVAL_MS = 1000 / 30
+const HERO_FRAME_INTERVAL_MS = 1000 / HERO_TARGET_FPS
 
 function shouldUseFallbackHero() {
   if (typeof window === 'undefined') {
@@ -165,7 +166,12 @@ function HeroCanvas({ onReady, onError }) {
     const timeLocation = gl.getUniformLocation(program, 'u_time')
     const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
 
-    if (!positionBuffer || positionLocation < 0 || !timeLocation || !resolutionLocation) {
+    if (
+      !positionBuffer ||
+      positionLocation < 0 ||
+      timeLocation === null ||
+      resolutionLocation === null
+    ) {
       gl.deleteProgram(program)
       onError()
       return undefined
@@ -183,7 +189,8 @@ function HeroCanvas({ onReady, onError }) {
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0)
 
     let animationFrame = 0
-    let visible = true
+    const supportsIntersectionObserver = typeof window.IntersectionObserver === 'function'
+    let visible = !supportsIntersectionObserver
     let destroyed = false
     let lastFrameTime = 0
 
@@ -219,9 +226,9 @@ function HeroCanvas({ onReady, onError }) {
     }
 
     const intersectionObserver =
-      typeof window.IntersectionObserver === 'function'
+      supportsIntersectionObserver
         ? new window.IntersectionObserver(entries => {
-            visible = entries[0]?.isIntersecting ?? true
+            visible = entries.length > 0 ? entries[0].isIntersecting : false
           })
         : null
 
