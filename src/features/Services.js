@@ -30,7 +30,7 @@ export function Services() {
   return (
     <Section id='capabilities' $tone='muted'>
       <SectionInner>
-        <SectionHeading eyebrow='Capabilities' title='What we help SaaS teams move forward.' align='center'>
+        <SectionHeading eyebrow='Capabilities' title='How we help SaaS teams move forward.' align='center'>
           Each engagement is built around business outcomes, user clarity, and dependable product
           execution instead of disconnected design and development handoffs.
         </SectionHeading>

@@ -70,7 +70,7 @@ const HeroContent = styled.div`
   align-items: end;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    grid-template-columns: minmax(0, 2fr) minmax(${({ theme }) => theme.layout.sidebarMin}, 1fr);
   }
 `
 

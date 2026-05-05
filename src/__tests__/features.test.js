@@ -55,7 +55,7 @@ describe('About', () => {
 describe('Services', () => {
   it('renders the capabilities heading', () => {
     render(withTheme(<Services />))
-    expect(screen.getByRole('heading', { name: /what we help saas teams move forward/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /how we help saas teams move forward/i })).toBeInTheDocument()
   })
 
   it('renders the four service cards', () => {

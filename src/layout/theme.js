@@ -70,6 +70,7 @@ export const shadows = {
 export const layout = {
   narrow: '760px',
   maxWidth: '1120px',
+  sidebarMin: '280px',
 }
 
 export const theme = {
