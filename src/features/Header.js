@@ -1,111 +1,121 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { FlatButton } from '../components'
+import { FlatButton, SectionInner, Eyebrow } from '../components'
 import heroImage from '../images/hero_image.jpg'
+
+const highlights = [
+  'MVP to production roadmaps',
+  'Modern React and AI-enabled workflows',
+  'Built for founders, operators, and small teams',
+]
 
 export function Header({ title, tagline, urls }) {
   return (
-    <StyledHeader as='header' className='header'>
-      <HeaderContent className='header_content'>
-        <ResponsiveBox className='responsive_box'>
-          <div className='flex_child'>
-            <SiteTitle>
-              {title}
-              <br />
-              <small className='header_tagline'>{tagline}</small>
-            </SiteTitle>
-            <FlatButton as='a' href={urls.contactForm} type='primary'>
-              Contact Us
-            </FlatButton>
-            <LinkedinButton as='a' href={urls.linkedin}>
-              Connect on LinkedIn
-            </LinkedinButton>
-          </div>
-        </ResponsiveBox>
-      </HeaderContent>
+    <StyledHeader as='header'>
+      <HeroOverlay>
+        <SectionInner>
+          <HeroContent>
+            <CopyBlock>
+              <Eyebrow $tone='dark'>{title}</Eyebrow>
+              <HeroTitle>Client-facing SaaS products designed, shipped, and iterated with you.</HeroTitle>
+              <HeroLead>{tagline}</HeroLead>
+              <HeroDescription>
+                Indie Owls partners with ambitious teams to shape product strategy, design the
+                experience, and build launch-ready SaaS platforms without the overhead of hiring a
+                full in-house team up front.
+              </HeroDescription>
+              <Actions>
+                <FlatButton as='a' href={urls.contactForm} type='primary'>
+                  Start a SaaS project
+                </FlatButton>
+                <FlatButton as='a' href='#process' type='dark'>
+                  See how we work
+                </FlatButton>
+              </Actions>
+            </CopyBlock>
+            <Highlights aria-label='Agency highlights'>
+              {highlights.map((highlight) => (
+                <HighlightPill key={highlight}>{highlight}</HighlightPill>
+              ))}
+            </Highlights>
+          </HeroContent>
+        </SectionInner>
+      </HeroOverlay>
     </StyledHeader>
   )
 }
 
 const StyledHeader = styled.header`
-  /* flex */
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /* box */
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background-size: cover !important;
-  background: radial-gradient(
-      ellipse at center,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) 37%,
-      rgba(0, 0, 0, 0.65) 100%
-    ),
-    url(${heroImage}) no-repeat center center scroll;
-  /* content */
-  text-align: center;
+  align-items: stretch;
+  background:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.2), transparent 32%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(15, 118, 110, 0.7)),
+    url(${heroImage}) no-repeat center center / cover;
 `
 
-const HeaderContent = styled.div`
-  /* flex */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  /* box */
-  position: absolute;
-  top: 0;
-  left: 0;
+const HeroOverlay = styled.div`
   width: 100%;
-  height: 100%;
-  /* content */
-  background: rgba(0, 0, 0, 0.33);
+  display: flex;
+  align-items: center;
+  padding: ${({ theme }) => theme.spacing.xxxl} 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.8));
 `
 
-const ResponsiveBox = styled.div`
-  /* flex */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
+const HeroContent = styled.div`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xxl};
+  align-items: end;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
-    align-items: flex-start;
-    width: 75%;
-    margin-left: 5%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: minmax(0, 2fr) minmax(${({ theme }) => theme.layout.sidebarMin}, 1fr);
   }
 `
 
-const SiteTitle = styled.h1`
-  /* box */
-  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
-  margin-bottom: 40px;
-  /* content */
+const CopyBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.lg};
+  max-width: 720px;
+`
+
+const HeroTitle = styled.h1`
+  color: ${({ theme }) => theme.colors.white};
+  text-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+`
+
+const HeroLead = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.medium};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.large};
-  letter-spacing: 0.03em;
-  line-height: 1;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
-    font-size: ${({ theme }) => theme.fontSizes.siteTitle};
-  }
+  color: ${({ theme }) => theme.colors.primaryLight};
 `
 
-const LinkedinButton = styled(FlatButton)`
-  background: ${({ theme }) => theme.colors.linkedin};
-  color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.white};
+const HeroDescription = styled.p`
+  color: rgba(248, 250, 252, 0.9);
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+`
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.white};
-  }
+const Actions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.md};
+`
+
+const Highlights = styled.div`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.md};
+`
+
+const HighlightPill = styled.div`
+  padding: ${({ theme }) => theme.spacing.lg};
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: ${({ theme }) => theme.radii.md};
+  background: rgba(15, 23, 42, 0.38);
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  backdrop-filter: blur(8px);
 `
 
 export default Header

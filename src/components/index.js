@@ -1,3 +1,5 @@
 export { default as Card } from './Card'
 export { default as FlatButton } from './FlatButton'
 export { default as Stack } from './Stack'
+export { default as Section, SectionInner, Eyebrow } from './Section'
+export { default as SectionHeading } from './SectionHeading'

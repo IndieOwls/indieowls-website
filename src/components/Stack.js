@@ -1,17 +1,14 @@
 import styled from 'styled-components'
 
 export const Stack = styled.div`
-  /* flex */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* box */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${({ theme, $gap = 'xl' }) => theme.spacing[$gap] || $gap};
+  align-items: ${({ $align = 'stretch' }) => $align};
   width: 100%;
-  height: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: row;
+    grid-template-columns: repeat(${({ $columns = 2 }) => $columns}, minmax(0, 1fr));
   }
 `
 

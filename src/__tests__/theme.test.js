@@ -1,4 +1,15 @@
-import { theme, breakpoints, colors, fonts, fontSizes, fontWeights } from '../layout/theme'
+import {
+  theme,
+  breakpoints,
+  colors,
+  fonts,
+  fontSizes,
+  fontWeights,
+  spacing,
+  radii,
+  shadows,
+  layout,
+} from '../layout/theme'
 
 describe('theme', () => {
   it('exports a theme object', () => {
@@ -12,6 +23,9 @@ describe('theme', () => {
     })
     it('has md breakpoint', () => {
       expect(breakpoints.md).toBeDefined()
+    })
+    it('has lg breakpoint', () => {
+      expect(breakpoints.lg).toBeDefined()
     })
   })
 
@@ -29,22 +43,24 @@ describe('theme', () => {
     it('has linkedin color', () => {
       expect(colors.linkedin).toBeDefined()
     })
+    it('has surface and border colors', () => {
+      expect(colors.surface).toBeDefined()
+      expect(colors.border).toBeDefined()
+    })
   })
 
   describe('fontSizes', () => {
     it('has base font size', () => {
       expect(fontSizes.base).toBeDefined()
     })
-    it('has pageHeading font size (used in GlobalStyle h1)', () => {
+    it('has pageHeading font size', () => {
       expect(fontSizes.pageHeading).toBeDefined()
     })
     it('has siteTitle font size', () => {
       expect(fontSizes.siteTitle).toBeDefined()
     })
-    it('has large font size', () => {
-      expect(fontSizes.large).toBeDefined()
-    })
-    it('has small font size', () => {
+    it('has display and small font sizes', () => {
+      expect(fontSizes.display).toBeDefined()
       expect(fontSizes.small).toBeDefined()
     })
   })
@@ -53,7 +69,8 @@ describe('theme', () => {
     it('has normal weight', () => {
       expect(fontWeights.normal).toBe(400)
     })
-    it('has bold weight', () => {
+    it('has medium and bold weights', () => {
+      expect(fontWeights.medium).toBe(500)
       expect(fontWeights.bold).toBe(600)
     })
   })
@@ -64,6 +81,23 @@ describe('theme', () => {
     })
     it('has secondary font', () => {
       expect(fonts.secondary).toMatch(/roboto slab/i)
+    })
+  })
+
+  describe('additional design tokens', () => {
+    it('has spacing scale', () => {
+      expect(spacing.md).toBeDefined()
+      expect(spacing.xxxl).toBeDefined()
+    })
+
+    it('has border radii and shadows', () => {
+      expect(radii.md).toBeDefined()
+      expect(shadows.md).toBeDefined()
+    })
+
+    it('has layout width tokens', () => {
+      expect(layout.maxWidth).toBeDefined()
+      expect(layout.narrow).toBeDefined()
     })
   })
 })

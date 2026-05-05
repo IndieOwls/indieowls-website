@@ -6,33 +6,25 @@ import { theme } from '../layout/theme'
 import { Card } from '../components/Card'
 import { FlatButton } from '../components/FlatButton'
 import { Stack } from '../components/Stack'
+import { Section, SectionInner, Eyebrow } from '../components/Section'
+import { SectionHeading } from '../components/SectionHeading'
 
-/**
- * Helper to wrap components in ThemeProvider (styled-components requires it).
- */
 function withTheme(ui) {
   return <ThemeProvider theme={theme}>{ui}</ThemeProvider>
 }
 
-// ---------------------------------------------------------------------------
-// Card
-// ---------------------------------------------------------------------------
 describe('Card', () => {
   it('renders children', () => {
     render(withTheme(<Card>Card content</Card>))
     expect(screen.getByText('Card content')).toBeInTheDocument()
   })
 
-  it('applies additional style prop', () => {
-    render(withTheme(<Card data-testid='card' style={{ color: 'red' }} />))
-    const card = screen.getByTestId('card')
-    expect(card).toBeInTheDocument()
+  it('supports visual variants', () => {
+    render(withTheme(<Card data-testid='card' $variant='accent'>Accent</Card>))
+    expect(screen.getByTestId('card')).toBeInTheDocument()
   })
 })
 
-// ---------------------------------------------------------------------------
-// FlatButton
-// ---------------------------------------------------------------------------
 describe('FlatButton', () => {
   it('renders children', () => {
     render(withTheme(<FlatButton>Click me</FlatButton>))
@@ -47,7 +39,7 @@ describe('FlatButton', () => {
   it('renders as an anchor when "as" prop is "a"', () => {
     render(
       withTheme(
-        <FlatButton as='a' href='https://example.com' data-testid='link'>
+        <FlatButton as='a' href='https://example.com' data-testid='link' type='primary'>
           Link
         </FlatButton>
       )
@@ -58,13 +50,32 @@ describe('FlatButton', () => {
   })
 })
 
-// ---------------------------------------------------------------------------
-// Stack
-// ---------------------------------------------------------------------------
 describe('Stack', () => {
   it('renders children', () => {
     render(withTheme(<Stack><span>Item 1</span><span>Item 2</span></Stack>))
     expect(screen.getByText('Item 1')).toBeInTheDocument()
     expect(screen.getByText('Item 2')).toBeInTheDocument()
+  })
+})
+
+describe('Section primitives', () => {
+  it('renders section wrappers and eyebrow text', () => {
+    render(
+      withTheme(
+        <Section>
+          <SectionInner>
+            <Eyebrow>Overview</Eyebrow>
+            <SectionHeading eyebrow='Heading label' title='Section title'>
+              Section lead text
+            </SectionHeading>
+          </SectionInner>
+        </Section>
+      )
+    )
+
+    expect(screen.getByText('Overview')).toBeInTheDocument()
+    expect(screen.getByText('Heading label')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /section title/i })).toBeInTheDocument()
+    expect(screen.getByText('Section lead text')).toBeInTheDocument()
   })
 })
