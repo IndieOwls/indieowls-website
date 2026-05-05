@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../layout/theme'
 
@@ -23,6 +23,83 @@ const mockUrls = {
 // Header
 // ---------------------------------------------------------------------------
 describe('Header', () => {
+  const originalMatchMedia = window.matchMedia
+  const originalRequestAnimationFrame = window.requestAnimationFrame
+  const originalCancelAnimationFrame = window.cancelAnimationFrame
+  const originalGetContext = HTMLCanvasElement.prototype.getContext
+  const originalInnerWidth = window.innerWidth
+  const originalMaxTouchPoints = navigator.maxTouchPoints
+
+  const createMatchMedia = matches =>
+    jest.fn().mockImplementation(query => ({
+      matches,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }))
+
+  const createWebGlContext = () => ({
+    VERTEX_SHADER: 0x8b31,
+    FRAGMENT_SHADER: 0x8b30,
+    COMPILE_STATUS: 0x8b81,
+    LINK_STATUS: 0x8b82,
+    ARRAY_BUFFER: 0x8892,
+    STATIC_DRAW: 0x88e4,
+    FLOAT: 0x1406,
+    TRIANGLE_STRIP: 0x0005,
+    createShader: jest.fn(() => ({})),
+    shaderSource: jest.fn(),
+    compileShader: jest.fn(),
+    getShaderParameter: jest.fn(() => true),
+    deleteShader: jest.fn(),
+    createProgram: jest.fn(() => ({})),
+    attachShader: jest.fn(),
+    linkProgram: jest.fn(),
+    getProgramParameter: jest.fn(() => true),
+    deleteProgram: jest.fn(),
+    createBuffer: jest.fn(() => ({})),
+    getAttribLocation: jest.fn(() => 0),
+    getUniformLocation: jest.fn(() => ({})),
+    bindBuffer: jest.fn(),
+    bufferData: jest.fn(),
+    useProgram: jest.fn(),
+    enableVertexAttribArray: jest.fn(),
+    vertexAttribPointer: jest.fn(),
+    viewport: jest.fn(),
+    uniform1f: jest.fn(),
+    uniform2f: jest.fn(),
+    drawArrays: jest.fn(),
+    deleteBuffer: jest.fn(),
+  })
+
+  beforeEach(() => {
+    window.matchMedia = createMatchMedia(true)
+    window.requestAnimationFrame = jest.fn(() => 1)
+    window.cancelAnimationFrame = jest.fn()
+    window.innerWidth = 640
+    Object.defineProperty(navigator, 'maxTouchPoints', {
+      configurable: true,
+      value: 0,
+    })
+    HTMLCanvasElement.prototype.getContext = jest.fn(() => null)
+  })
+
+  afterEach(() => {
+    window.matchMedia = originalMatchMedia
+    window.requestAnimationFrame = originalRequestAnimationFrame
+    window.cancelAnimationFrame = originalCancelAnimationFrame
+    window.innerWidth = originalInnerWidth
+    Object.defineProperty(navigator, 'maxTouchPoints', {
+      configurable: true,
+      value: originalMaxTouchPoints,
+    })
+    HTMLCanvasElement.prototype.getContext = originalGetContext
+  })
+
   it('renders the site title', () => {
     render(withTheme(<Header title='Indie Owls Creative' tagline='Great tagline' urls={mockUrls} />))
     expect(screen.getByText('Indie Owls Creative')).toBeInTheDocument()
@@ -43,6 +120,30 @@ describe('Header', () => {
     render(withTheme(<Header title='Title' tagline='Tag' urls={mockUrls} />))
     const link = screen.getByRole('link', { name: /connect on linkedin/i })
     expect(link).toHaveAttribute('href', mockUrls.linkedin)
+  })
+
+  it('falls back to the static motion treatment on mobile', () => {
+    window.innerWidth = 640
+
+    const { container } = render(withTheme(<Header title='Title' tagline='Tag' urls={mockUrls} />))
+
+    expect(container.querySelector('header')).toHaveAttribute('data-hero-mode', 'fallback')
+    expect(screen.getByTestId('hero-motion-fallback')).toBeInTheDocument()
+    expect(screen.queryByTestId('hero-motion-canvas')).not.toBeInTheDocument()
+  })
+
+  it('activates the WebGL scene on larger screens when supported', async () => {
+    window.matchMedia = createMatchMedia(false)
+    window.innerWidth = 1280
+    const webglContext = createWebGlContext()
+    HTMLCanvasElement.prototype.getContext = jest.fn(contextType =>
+      contextType === 'webgl' ? webglContext : null
+    )
+
+    const { container } = render(withTheme(<Header title='Title' tagline='Tag' urls={mockUrls} />))
+
+    await waitFor(() => expect(container.querySelector('header')).toHaveAttribute('data-hero-mode', 'webgl'))
+    expect(screen.getByTestId('hero-motion-canvas')).toBeInTheDocument()
   })
 })
 
