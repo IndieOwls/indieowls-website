@@ -9,17 +9,20 @@ const HERO_MEDIA_QUERY =
 const HERO_TARGET_FPS = 30
 const HERO_MAX_DEVICE_PIXEL_RATIO = 2
 const HERO_FRAME_INTERVAL_MS = 1000 / HERO_TARGET_FPS
+const HERO_GRID_PERSPECTIVE = '900px'
+const HERO_GRID_ROTATION = '74deg'
+const HERO_GRID_SCALE = 1.5
 
 function shouldUseFallbackHero() {
   if (typeof window === 'undefined') {
     return true
   }
 
-  const matchesViewport = window.innerWidth < MOBILE_HERO_WIDTH
+  const isMobileViewport = window.innerWidth < MOBILE_HERO_WIDTH
   const prefersFallback = typeof window.matchMedia === 'function' && window.matchMedia(HERO_MEDIA_QUERY).matches
   const isTouchPrimary = typeof navigator !== 'undefined' && navigator.maxTouchPoints > 1
 
-  return matchesViewport || prefersFallback || isTouchPrimary
+  return isMobileViewport || prefersFallback || isTouchPrimary
 }
 
 function compileShader(gl, type, source) {
@@ -225,12 +228,13 @@ function HeroCanvas({ onReady, onError }) {
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 
-    const intersectionObserver =
-      supportsIntersectionObserver
-        ? new window.IntersectionObserver(entries => {
-            visible = entries.length > 0 ? entries[0].isIntersecting : false
-          })
-        : null
+    let intersectionObserver = null
+
+    if (supportsIntersectionObserver) {
+      intersectionObserver = new window.IntersectionObserver(entries => {
+        visible = entries.length > 0 ? entries[0].isIntersecting : false
+      })
+    }
 
     const handleVisibilityChange = () => {
       visible = !document.hidden
@@ -364,7 +368,7 @@ const FallbackGrid = styled.div`
   background-size: 44px 44px;
   mask-image: linear-gradient(to bottom, transparent 5%, rgba(0, 0, 0, 0.95) 30%, transparent 100%);
   opacity: 0.32;
-  transform: perspective(900px) rotateX(74deg) scale(1.5);
+  transform: perspective(${HERO_GRID_PERSPECTIVE}) rotateX(${HERO_GRID_ROTATION}) scale(${HERO_GRID_SCALE});
   transform-origin: center bottom;
 `
 
