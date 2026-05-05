@@ -6,6 +6,8 @@ import { FlatButton } from '../components'
 const MOBILE_HERO_WIDTH = 768
 const HERO_MEDIA_QUERY =
   '(max-width: 767px), (pointer: coarse), (hover: none), (prefers-reduced-motion: reduce)'
+const HERO_MAX_DEVICE_PIXEL_RATIO = 2
+const HERO_FRAME_INTERVAL_MS = 1000 / 30
 
 function shouldUseFallbackHero() {
   if (typeof window === 'undefined') {
@@ -186,7 +188,7 @@ function HeroCanvas({ onReady, onError }) {
     let lastFrameTime = 0
 
     const resize = () => {
-      const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.5)
+      const devicePixelRatio = Math.min(window.devicePixelRatio || 1, HERO_MAX_DEVICE_PIXEL_RATIO)
       const width = Math.max(1, Math.floor(canvas.clientWidth * devicePixelRatio))
       const height = Math.max(1, Math.floor(canvas.clientHeight * devicePixelRatio))
 
@@ -205,7 +207,7 @@ function HeroCanvas({ onReady, onError }) {
 
       animationFrame = window.requestAnimationFrame(renderFrame)
 
-      if (!visible || now - lastFrameTime < 1000 / 30) {
+      if (!visible || now - lastFrameTime < HERO_FRAME_INTERVAL_MS) {
         return
       }
 
