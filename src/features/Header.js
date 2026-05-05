@@ -142,15 +142,14 @@ function HeroCanvas({ onReady, onError }) {
       return undefined
     }
 
-    const gl =
-      canvas.getContext('webgl', {
-        alpha: false,
-        antialias: false,
-        depth: false,
-        powerPreference: 'high-performance',
-        preserveDrawingBuffer: false,
-        stencil: false,
-      }) || canvas.getContext('experimental-webgl')
+    const gl = canvas.getContext('webgl', {
+      alpha: false,
+      antialias: false,
+      depth: false,
+      powerPreference: 'high-performance',
+      preserveDrawingBuffer: false,
+      stencil: false,
+    })
 
     if (!gl) {
       onError()
@@ -293,7 +292,7 @@ export function Header({ title, tagline, urls }) {
       <HeaderOverlay className='header_overlay' />
       <HeaderContent className='header_content'>
         <ResponsiveBox className='responsive_box'>
-          <HeaderEyebrow>FUTURE-READY DIGITAL EXPERIENCES</HeaderEyebrow>
+          <HeaderEyebrow>Future-ready digital experiences</HeaderEyebrow>
           <div className='flex_child'>
             <SiteTitle>
               {title}
