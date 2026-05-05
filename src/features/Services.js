@@ -1,60 +1,63 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, Stack } from '../components'
+
+import { Card, Section, SectionHeading, SectionInner, Stack } from '../components'
+
+const services = [
+  {
+    title: 'SaaS product strategy and validation',
+    description:
+      'Shape the right first release, define the roadmap, and align the product around customer workflows and business goals before engineering momentum is wasted.',
+  },
+  {
+    title: 'UX/UI systems for complex application flows',
+    description:
+      'Design onboarding, dashboards, permissions, and decision-heavy experiences that feel usable from the first walkthrough to everyday use.',
+  },
+  {
+    title: 'Full-stack delivery and iteration',
+    description:
+      'Build core product foundations, refine features in small releases, and support launch-readiness with code that stays maintainable as the product grows.',
+  },
+  {
+    title: 'Automation and AI-assisted workflows',
+    description:
+      'Introduce internal tooling, smart workflows, and pragmatic AI features where they create operational leverage for the product and the team behind it.',
+  },
+]
 
 export function Services() {
   return (
-    <section>
-      <Stack>
-        <Card style={{ padding: '5rem 0' }}>
-          <h2>Our Services</h2>
-          <p>
-            At <strong>Indie Owls Creative</strong>, we pride ourselves on delivering an extensive
-            array of software solutions tailored to your unique needs.
-          </p>
-        </Card>
-      </Stack>
-      <Stack>
-        <NestedCard style={{ background: '#4DB6AC' }}>
-          <h3>
-            <span>1 - Javascript and React</span>
-          </h3>
-          <p>
-            Expert-level coding and seamless functionality for all of your cross-platform needs.
-            Scalable, secure, and reliable.
-          </p>
-        </NestedCard>
-        <NestedCard style={{ background: '#FCF5E5' }}>
-          <h3>
-            <span>2 - Next-generation Features</span>
-          </h3>
-          <p>
-            Innovative functionality utilizing the latest technologies to deliver unique user
-            experiences. From AR/VR to AI and beyond, we've got you covered.
-          </p>
-        </NestedCard>
-        <NestedCard style={{ background: '#333333', color: '#eeeeee' }}>
-          <h3>
-            <span>3 - Agile Product Development</span>
-          </h3>
-          <p>
-            Adapt to changing market needs and stay ahead of the competition. Find your market niche
-            and build a product that will stand the test of time. We'll help you get there.
-          </p>
-        </NestedCard>
-      </Stack>
-    </section>
+    <Section id='capabilities' $tone='muted'>
+      <SectionInner>
+        <SectionHeading eyebrow='Capabilities' title='What we help SaaS teams move forward.' align='center'>
+          Each engagement is built around business outcomes, user clarity, and dependable product
+          execution instead of disconnected design and development handoffs.
+        </SectionHeading>
+        <Stack $columns={2}>
+          {services.map(({ title, description }, index) => (
+            <ServiceCard key={title} $variant={index === 0 ? 'accent' : 'default'}>
+              <ServiceNumber>0{index + 1}</ServiceNumber>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </ServiceCard>
+          ))}
+        </Stack>
+      </SectionInner>
+    </Section>
   )
 }
 
-const NestedCard = styled(Card)`
-  height: 350px;
-  justify-content: flex-start;
-  padding: 3rem 0;
+const ServiceCard = styled(Card)`
+  min-height: 260px;
+`
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 3rem 2% 0;
-  }
+const ServiceNumber = styled.span`
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.primaryDark};
 `
 
 export default Services
