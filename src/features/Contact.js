@@ -33,7 +33,7 @@ export function Contact({ urls }) {
                 ))}
               </InquiryList>
               <FlatButton as='a' href={urls.contactForm} type='primary'>
-                Contact Indie Owls Creative
+                Get in Touch Today!
               </FlatButton>
             </ActionColumn>
           </Stack>

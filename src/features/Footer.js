@@ -10,7 +10,7 @@ export function Footer() {
         <Stack>
           <CardList as='ul' $variant='muted'>
             <li>
-              <strong>Indie Owls Creative</strong>
+              <strong>Indie Owls Creative Studio</strong>
             </li>
             <li>A SaaS Product Development Company.</li>
             <li>Copyright © {new Date().getFullYear()} Indie Owls Creative, LLC.</li>

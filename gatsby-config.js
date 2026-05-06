@@ -4,7 +4,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Indie Owls Creative`,
+    title: `Indie Owls Creative Studio`,
     tagline: `Tech Expertise, Product Design, and Agile Development`,
     siteUrl: `https://www.indieowls.com`,
     urls: {

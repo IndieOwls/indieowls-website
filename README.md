@@ -1,4 +1,4 @@
-# Indie Owls Creative
+# Indie Owls Creative Studio
 
 SaaS product design and development agency website, built with [Gatsby](https://www.gatsbyjs.com/).
 

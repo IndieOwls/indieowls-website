@@ -22,7 +22,7 @@ export function Header({ title, tagline, urls }) {
               <HeroLead>{tagline}</HeroLead>
               <HeroDescription>
                 We partner with brands and early-stage founders to shape strategy and build
-                platforms without the overhead of a full engineering team.
+                platforms--without the overhead of a full engineering team.
               </HeroDescription>
               <Actions>
                 <FlatButton as='a' href={urls.contactForm} type='primary'>
