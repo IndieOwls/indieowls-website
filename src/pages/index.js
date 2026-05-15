@@ -13,7 +13,7 @@ function IndexPage({ data }) {
         <Header title={title} tagline={tagline} urls={urls} />
         <Contact urls={urls} />
       </main>
-      <Footer />
+      <Footer title={title} tagline={tagline} urls={urls} />
     </Layout>
   )
 }

@@ -3,13 +3,6 @@ import styled from 'styled-components'
 
 import { Card, FlatButton, Section, SectionHeading, SectionInner, Stack } from '../components'
 
-const inquiryTypes = [
-  'A Product Roadmap and Business Needs',
-  'Cutting-edge technology, including AI-Agent Workflows',
-  'Rapid Software Strategy & Development',
-  'Scrum Certified Team Development & Mentorship',
-]
-
 export function Contact({ urls }) {
   return (
     <Section id='contact'>
@@ -17,20 +10,16 @@ export function Contact({ urls }) {
         <CalloutCard $variant='accent'>
           <Stack $align='center'>
             <div>
-              <SectionHeading eyebrow='Start the conversation' title='Need a Software Product?'>
-                Tell us what stage your product is in, where the friction is, and what you want the
-                next release to accomplish. <br />
-                <br />{' '}
-                <span style={{ color: 'blue', fontWeight: 'bold' }}>
-                  Early-stage ideas are welcome.
-                </span>
+              <SectionHeading eyebrow='Start the conversation' title='Burned by AI slop?'>
+                Give our just-right engineering recipes a try. It's software made to perfection.
               </SectionHeading>
             </div>
             <ActionColumn>
               <InquiryList>
-                {inquiryTypes.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
+                <li>Prototypes launched in weeks, not months.</li>
+                <li>Intelligent use of AI Agentic Workflows</li>
+                <li>Scrum Team Certified</li>
+                <li>Guaranteed made in the U.S.A. 🇺🇸</li>
               </InquiryList>
               <FlatButton as='a' href={urls.contactForm} type='primary'>
                 Get in Touch Today!

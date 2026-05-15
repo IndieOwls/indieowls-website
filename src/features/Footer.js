@@ -3,16 +3,16 @@ import styled from 'styled-components'
 
 import { Card, SectionInner, Stack } from '../components'
 
-export function Footer() {
+export function Footer({ title, tagline }) {
   return (
     <StyledFooter>
       <SectionInner>
         <Stack>
           <CardList as='ul' $variant='muted'>
             <li>
-              <strong>Indie Owls Creative Studio</strong>
+              <strong>{title}</strong>
             </li>
-            <li>A SaaS Product Development Company.</li>
+            <li>Based in Scranton, PA, U.S.A. (US East Coast)</li>
             <li>Copyright © {new Date().getFullYear()} Indie Owls Creative, LLC.</li>
           </CardList>
           <CardList as='ul' $variant='muted'>

@@ -4,12 +4,6 @@ import styled from 'styled-components'
 import { FlatButton, SectionInner, Eyebrow } from '../components'
 import heroImage from '../images/hero_image.jpg'
 
-const highlights = [
-  'From initial planning to fully launched',
-  'Cutting-edge Workflows',
-  'Built for founders and small teams',
-]
-
 export function Header({ title, tagline, urls }) {
   return (
     <StyledHeader as='header'>
@@ -17,26 +11,30 @@ export function Header({ title, tagline, urls }) {
         <SectionInner>
           <HeroContent>
             <CopyBlock>
-              <Eyebrow $tone='dark'>{title}</Eyebrow>
-              <HeroTitle>We Build Next-Generation Software for Today's Dreams</HeroTitle>
+              <Eyebrow as='h1' $tone='dark'>
+                {title}
+              </Eyebrow>
+              <HeroStatement>You think it. We build it.</HeroStatement>
               <HeroLead>{tagline}</HeroLead>
               <HeroDescription>
-                We partner with brands and early-stage founders to shape strategy and build
-                platforms--without the overhead of a full engineering team.
+                We partner with startups to shape product strategy and build platforms&mdash;
+                without the overhead of a full engineering team.
               </HeroDescription>
               <Actions>
+                <FlatButton as='a' href='#contact' type='dark'>
+                  How We Work
+                </FlatButton>
                 <FlatButton as='a' href={urls.contactForm} type='primary'>
                   Launch Your Idea
-                </FlatButton>
-                <FlatButton as='a' href='#process' type='dark'>
-                  How We Work
                 </FlatButton>
               </Actions>
             </CopyBlock>
             <Highlights aria-label='Agency highlights'>
-              {highlights.map((highlight) => (
-                <HighlightPill key={highlight}>{highlight}</HighlightPill>
-              ))}
+              <HighlightPill>Product Strategy & Design</HighlightPill>
+              <HighlightPill>
+                Built <em>with</em> AI. Not <em>by</em> AI.
+              </HighlightPill>
+              <HighlightPill>Launch at an Affordable Price</HighlightPill>
             </Highlights>
           </HeroContent>
         </SectionInner>
@@ -80,14 +78,19 @@ const CopyBlock = styled.div`
   max-width: 720px;
 `
 
-const HeroTitle = styled.h1`
+const HeroStatement = styled.p`
   color: ${({ theme }) => theme.colors.white};
   text-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+  font-size: 3rem;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
 `
 
-const HeroLead = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.medium};
+const HeroLead = styled.small`
+  font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: limegreen;
 `
 
