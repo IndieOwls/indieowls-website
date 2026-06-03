@@ -1,13 +1,17 @@
 const React = require('react')
 
-// Mock StaticImage: renders a plain <img> with the provided alt and any other props
-const StaticImage = ({ src, alt, ...rest }) =>
+// Destructure out Gatsby-specific props, pass only valid HTML attrs to <img>
+const StaticImage = ({ src, alt, imgStyle, style, placeholder, layout, loading, ...rest }) =>
   React.createElement('img', { src, alt, ...rest })
 
-// Mock GatsbyImage: renders a plain <img> using the image object's fallback
-const GatsbyImage = ({ image, alt, ...rest }) =>
-  React.createElement('img', { src: image && image.images && image.images.fallback && image.images.fallback.src, alt, ...rest })
+const GatsbyImage = ({ image, alt, imgStyle, style, ...rest }) =>
+  React.createElement('img', {
+    src: image && image.images && image.images.fallback && image.images.fallback.src,
+    alt,
+    ...rest,
+  })
 
 const getImage = (data) => data && data.childImageSharp && data.childImageSharp.gatsbyImageData
+const getSrc = (data) => data && data.childImageSharp && data.childImageSharp.src
 
-module.exports = { StaticImage, GatsbyImage, getImage }
+module.exports = { StaticImage, GatsbyImage, getImage, getSrc }

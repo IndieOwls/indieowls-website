@@ -15,7 +15,7 @@ export const colors = {
   secondary: '#f59e0b',
   secondaryLight: '#fef3c7',
   secondaryDark: '#d97706',
-  linkedin: '#0077b5',
+  highlight: '#facc15',
   surface: '#ffffff',
   surfaceMuted: '#f8fafc',
   surfaceStrong: '#e2e8f0',
@@ -35,7 +35,7 @@ export const fontSizes = {
   large: '1.5rem',
   pageHeading: '2.5rem',
   siteTitle: '4.5rem',
-  display: 'clamp(2.75rem, 1vw, 5rem)',
+  display: 'clamp(2.75rem, 8vw, 5rem)',
 }
 
 export const fontWeights = {

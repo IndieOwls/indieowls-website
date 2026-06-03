@@ -1,22 +1,24 @@
 import React from 'react'
-import styled from 'styled-components'
-
+import { Link } from 'gatsby'
 import { Card, SectionInner, Stack } from '../components'
+import * as styles from './Footer.css'
 
-export function Footer({ title, tagline }) {
+export function Footer({ title = 'Indie Owls Creative Studio' }) {
   return (
-    <StyledFooter>
+    <footer className={styles.footer}>
       <SectionInner>
         <Stack>
-          <CardList as='ul' $variant='muted'>
+          <Card as='ul' variant='muted' className={styles.cardList}>
             <li>
               <strong>{title}</strong>
             </li>
-            <li>Based in Scranton, PA, U.S.A. (US East Coast)</li>
-            <li>Copyright © {new Date().getFullYear()} Indie Owls Creative, LLC.</li>
-          </CardList>
-          <CardList as='ul' $variant='muted'>
+            <li>Based in Scranton, PA, U.S.A. (US East)</li>
+          </Card>
+          <Card as='ul' variant='muted' className={styles.cardList}>
             <strong>Connect</strong>
+            <li>
+              <Link to='/staff'>Our Team</Link>
+            </li>
             <li>
               <a
                 href='https://www.linkedin.com/company/indie-owls-creative/'
@@ -31,20 +33,11 @@ export function Footer({ title, tagline }) {
                 GitHub
               </a>
             </li>
-          </CardList>
+          </Card>
         </Stack>
       </SectionInner>
-    </StyledFooter>
+    </footer>
   )
 }
-
-const StyledFooter = styled.footer`
-  padding: 0 0 ${({ theme }) => theme.spacing.xxxl};
-`
-
-const CardList = styled(Card)`
-  list-style: none;
-  padding-left: ${({ theme }) => theme.spacing.xl};
-`
 
 export default Footer

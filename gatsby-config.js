@@ -13,7 +13,7 @@ module.exports = {
     },
   },
   plugins: [
-    'gatsby-plugin-styled-components',
+    'gatsby-plugin-vanilla-extract',
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -23,7 +23,42 @@ module.exports = {
         name: 'images',
         path: './src/images/',
       },
-      __key: 'images',
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        query: `
+          {
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
+        resolveSiteUrl: () => 'https://www.indieowls.com',
+        serialize: ({ path }) => ({ url: path, changefreq: 'monthly', priority: 0.7 }),
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: `Indie Owls Creative Studio`,
+        short_name: `Indie Owls`,
+        start_url: `/`,
+        background_color: `#ecfeff`,
+        theme_color: `#0f766e`,
+        display: `standalone`,
+        icon: `src/images/android-chrome-192x192.png`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.indieowls.com',
+        sitemap: 'https://www.indieowls.com/sitemap-index.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
     },
     'gatsby-plugin-netlify',
   ],

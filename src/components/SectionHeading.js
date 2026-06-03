@@ -1,38 +1,26 @@
 import React from 'react'
-import styled from 'styled-components'
+import { cx } from '../lib/cx'
+import * as styles from './SectionHeading.css'
 
-export function SectionHeading({ eyebrow, title, children, align = 'left', tone = 'default' }) {
+export function SectionHeading({ eyebrow, title, children, align = 'left', tone = 'default', className }) {
   return (
-    <Wrapper $align={align}>
-      {eyebrow ? <EyebrowText $tone={tone}>{eyebrow}</EyebrowText> : null}
+    <div className={cx(styles.wrapper, className)} style={{ textAlign: align }}>
+      {eyebrow ? (
+        <p className={cx(styles.eyebrowText, tone === 'dark' ? styles.eyebrowTextDark : styles.eyebrowTextDefault)}>
+          {eyebrow}
+        </p>
+      ) : null}
       <h2>{title}</h2>
-      {children ? <Lead $align={align} $tone={tone}>{children}</Lead> : null}
-    </Wrapper>
+      {children ? (
+        <p
+          className={cx(styles.lead, tone === 'dark' ? styles.leadDark : styles.leadDefault)}
+          style={align === 'center' ? { textAlign: 'center' } : undefined}
+        >
+          {children}
+        </p>
+      ) : null}
+    </div>
   )
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
-  max-width: ${({ theme }) => theme.layout.narrow};
-  margin: 0 auto ${({ theme }) => theme.spacing.xxl};
-  text-align: ${({ $align }) => $align};
-`
-
-const EyebrowText = styled.p`
-  margin: 0;
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: ${({ theme, $tone }) => ($tone === 'dark' ? 'rgba(248, 250, 252, 0.72)' : theme.colors.primaryDark)};
-`
-
-const Lead = styled.p`
-  margin: 0 auto;
-  color: ${({ theme, $tone }) => ($tone === 'dark' ? 'rgba(248, 250, 252, 0.8)' : theme.colors.textMuted)};
-  ${({ $align }) => ($align === 'center' ? 'text-align: center;' : '')}
-`
 
 export default SectionHeading

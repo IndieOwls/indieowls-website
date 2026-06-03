@@ -1,28 +1,36 @@
-import styled from 'styled-components'
+import React from 'react'
+import { cx } from '../lib/cx'
+import * as styles from './Section.css'
 
-export const Section = styled.section`
-  padding: ${({ theme }) => theme.spacing.xxxl} 0;
-  background: ${({ theme, $tone = 'default' }) => {
-    if ($tone === 'muted') return theme.colors.surfaceMuted
-    if ($tone === 'accent') return theme.colors.canvas
-    if ($tone === 'dark') return theme.colors.black
-    return 'transparent'
-  }};
-  color: ${({ theme, $tone = 'default' }) => ($tone === 'dark' ? theme.colors.white : 'inherit')};
-`
+const toneMap = {
+  default: styles.toneDefault,
+  muted: styles.toneMuted,
+  accent: styles.toneAccent,
+  dark: styles.toneDark,
+}
 
-export const SectionInner = styled.div`
-  width: min(calc(100% - 2rem), ${({ theme }) => theme.layout.maxWidth});
-  margin: 0 auto;
-`
+export function Section({ tone = 'default', className, children, ...rest }) {
+  return (
+    <section className={cx(styles.section, toneMap[tone] || toneMap.default, className)} {...rest}>
+      {children}
+    </section>
+  )
+}
 
-export const Eyebrow = styled.p`
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: limegreen;
-`
+export function SectionInner({ className, children, ...rest }) {
+  return (
+    <div className={cx(styles.sectionInner, className)} {...rest}>
+      {children}
+    </div>
+  )
+}
+
+export function Eyebrow({ as: Tag = 'p', className, children, ...rest }) {
+  return (
+    <Tag className={cx(styles.eyebrow, className)} {...rest}>
+      {children}
+    </Tag>
+  )
+}
 
 export default Section

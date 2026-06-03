@@ -4,8 +4,9 @@ module.exports = {
     '^.+\\.[jt]sx?$': 'babel-jest',
   },
   moduleNameMapper: {
-    // Handle CSS imports (including CSS modules and normalize.css)
+    // Handle CSS imports (including CSS modules, normalize.css, and vanilla-extract)
     '\\.css$': 'identity-obj-proxy',
+    '(\\.css\\.js)$': 'identity-obj-proxy',
     // Handle image imports
     '\\.(jpg|jpeg|png|gif|svg|webp)$': '<rootDir>/__mocks__/fileMock.js',
     // Handle @fontsource imports

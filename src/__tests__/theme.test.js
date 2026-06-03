@@ -40,8 +40,8 @@ describe('theme', () => {
       expect(colors.white).toBeDefined()
       expect(colors.black).toBeDefined()
     })
-    it('has linkedin color', () => {
-      expect(colors.linkedin).toBeDefined()
+    it('has highlight color', () => {
+      expect(colors.highlight).toBe('#facc15')
     })
     it('has surface and border colors', () => {
       expect(colors.surface).toBeDefined()

@@ -1,15 +1,22 @@
-import styled from 'styled-components'
+import React from 'react'
+import { spacing } from '../layout/theme'
+import { cx } from '../lib/cx'
+import * as styles from './Stack.css'
 
-export const Stack = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: ${({ theme, $gap = 'xl' }) => theme.spacing[$gap] || $gap};
-  align-items: ${({ $align = 'stretch' }) => $align};
-  width: 100%;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: repeat(${({ $columns = 2 }) => $columns}, minmax(0, 1fr));
-  }
-`
+export function Stack({ gap = 'xl', columns = 2, align = 'stretch', className, children, ...rest }) {
+  return (
+    <div
+      className={cx(styles.stack, className)}
+      style={{
+        '--stack-gap': spacing[gap] || gap,
+        '--stack-cols': columns,
+        '--stack-align': align,
+      }}
+      {...rest}
+    >
+      {children}
+    </div>
+  )
+}
 
 export default Stack

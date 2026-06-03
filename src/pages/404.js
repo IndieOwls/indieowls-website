@@ -1,17 +1,30 @@
 import React from 'react'
-import Layout from '../layout'
+import { Link } from 'gatsby'
 
+import Layout from '../layout'
+import { Section, SectionInner, Seo } from '../components'
 import Footer from '../features/Footer'
+
+import * as styles from './_404.css'
 
 function NotFoundPage() {
   return (
-    <Layout>
-      <p style={{ margin: 60, fontSize: '2em' }}>NotFoundPage </p>
-      <Footer />
+    <Layout footer={<Footer />}>
+      <Section>
+        <SectionInner>
+          <div className={styles.wrapper}>
+            <span className={styles.mutedCode}>404</span>
+            <p className={styles.message}>Page not found.</p>
+            <Link to='/' className={styles.homeLink}>
+              Back home
+            </Link>
+          </div>
+        </SectionInner>
+      </Section>
     </Layout>
   )
 }
 
 export default NotFoundPage
 
-export const Head = () => <title>Not found</title>
+export const Head = () => <Seo title='Not found' path='/404' />

@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import Layout from '../layout'
 
 describe('Layout', () => {
-  it('renders children inside ThemeProvider', () => {
+  it('renders children', () => {
     render(
       <Layout>
         <p>Test child content</p>
